@@ -17,3 +17,6 @@ config.log
 *.tar
 .vagrant
 ChangeLog-*
+.history/
+FreeNOS-1.0.0.iso
+FreeNOS.img
