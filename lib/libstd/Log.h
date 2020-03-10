@@ -99,12 +99,12 @@
  *
  * @note This class is a singleton
  */
-class Log : public Singleton<Log>
+class Log : public Singleton<Log>  // RCLS: Log: public Singleton<Log>，输出日志
 {
   public:
 
     /** Logging level values */
-    enum Level
+    enum Level  // RMEM: Level，日志级别，枚举类型
     {
         Emergency,
         Alert,
@@ -121,63 +121,63 @@ class Log : public Singleton<Log>
     /**
      * Constructor.
      */
-    Log();
+    Log();  // RMEM: Log()，构造函数，设置日志的默认级别
 
     /**
      * Destructor
      */
-    virtual ~Log();
+    virtual ~Log();  // RMEM: ~Log()，析构函数
 
     /**
      * Get the minimum logging level.
      *
      * @return Minimum LogLevel
      */
-    Level getMinimumLogLevel();
+    Level getMinimumLogLevel();  // RMEM: getMinimumLogLevel()，公有成员方法，获取日志级别
 
     /**
      * Set the minimum logging level.
      */
-    void setMinimumLogLevel(Level level);
+    void setMinimumLogLevel(Level level);  // RMEM: setMinimumLogLevel()，公有成员方法，设置日志级别
 
     /**
      * Append to buffered output.
      *
      * @param str String to append to buffer
      */
-    void append(const char *str);
+    void append(const char *str);  // RMEM: append()，公有成员方法，将指定内容追加到输出缓冲区 m_outputBuffer
 
     /**
      * Set log identity.
      *
      * @param ident Log identity
      */
-    void setIdent(const char *ident);
+    void setIdent(const char *ident);  // RMEM: setIdent()，公有成员方法
 
     /**
      * Retrieve log identify.
      *
      * @return Log identity
      */
-    const char * getIdent() const;
+    const char * getIdent() const;  // RMEM: getIdent()，公有成员方法 
 
   protected:
 
     /**
      * Write to the actual output device.
      */
-    virtual void write(const char *str) = 0;
+    virtual void write(const char *str) = 0;  // RMEM: write(), 子类接口，具体决定如何把内容写入输出缓冲器 m_outputBuffer
 
   private:
 
     /** Minimum log level required to log. */
-    Level m_minimumLogLevel;
+    Level m_minimumLogLevel;  // RMEM: m_minimumLogLevel，私有成员变量
 
     /** Identity */
-    const char *m_ident;
+    const char *m_ident;  // RMEM: m_ident，私有成员变量
 
     /** Buffered output */
-    String m_outputBuffer;
+    String m_outputBuffer;  // RMEM: m_outputBuffer, 私有成员变量
 };
 
 /**

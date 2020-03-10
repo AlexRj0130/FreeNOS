@@ -21,17 +21,17 @@
 #include "unistd.h"
 #include "POSIXApplication.h"
 
-POSIXApplication::POSIXApplication(int argc, char **argv)
+POSIXApplication::POSIXApplication(int argc, char **argv)  // RMEM: POSIXApplication()
     : Application(argc, argv)
 {
     setVersion(VERSION);
 }
 
-POSIXApplication::~POSIXApplication()
+POSIXApplication::~POSIXApplication()  // RMEM: ~POSIXApplication()
 {
 }
 
-POSIXApplication::Result POSIXApplication::output(const char *string) const
+POSIXApplication::Result POSIXApplication::output(const char *string) const  // RMEM: output()
 {
     printf("%s", string);
     return Success;

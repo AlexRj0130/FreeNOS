@@ -38,7 +38,7 @@
 /** Maximum number of supported command arguments. */
 #define MAX_ARGV 16
 
-Shell::Shell(int argc, char **argv)
+Shell::Shell(int argc, char **argv)  // RMEM: Shell()
     : POSIXApplication(argc, argv)
 {
     parser().setDescription("System command shell interpreter");
@@ -52,11 +52,11 @@ Shell::Shell(int argc, char **argv)
     registerCommand(new TimeCommand());
 }
 
-Shell::~Shell()
+Shell::~Shell()  // RMEM: ~Shell()
 {
 }
 
-Shell::Result Shell::exec()
+Shell::Result Shell::exec()  // RMEM: exec()
 {
     const Vector<Argument *> & positionals = arguments().getPositionals();
     FILE *fp;
@@ -67,7 +67,7 @@ Shell::Result Shell::exec()
     refreshMounts(0);
 
     // Check if shell script was given as argument
-    if (positionals.count() > 0)
+    if (positionals.count() > 0)  // NOTE: 执行 Shell 脚本
     {
         // Execute commands in each file
         for (Size i = 0; i < positionals.count(); i++)
@@ -117,7 +117,7 @@ Shell::Result Shell::exec()
         }
     }
     // Run an interactive Shell
-    else
+    else  // NOTE: 以交互方式执行 Shell 
     {
         // Show the user where to get help
         printf( "\r\n"

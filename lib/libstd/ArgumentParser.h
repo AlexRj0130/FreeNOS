@@ -37,14 +37,14 @@
 /**
  * Generic command-line argument parser.
  */
-class ArgumentParser
+class ArgumentParser  // RCLS: 应用程序参数解析器（Application的私有成员）
 {
   public:
 
     /**
      * Result codes.
      */
-    enum Result
+    enum Result  // RMEM: Result，参数解析器的返回值
     {
         Success,
         InvalidArgument,
@@ -57,40 +57,40 @@ class ArgumentParser
     /**
      * Constructor
      */
-    ArgumentParser();
+    ArgumentParser();  // RMEM: ArgumentParser(), 构造函数
 
     /**
      * Destructor
      */
-    virtual ~ArgumentParser();
+    virtual ~ArgumentParser();  // RMEM: ~()ArgumentParser()，析构函数
 
     /**
      * Get program usage.
      *
      * @return Program usage string reference.
      */
-    String getUsage() const;
+    String getUsage() const;  // RMEM: getUsage()，公有成员方法，获取参数信息，包括参数名、程序名等
 
     /**
      * Retrieve program name.
      *
      * @return Program name
      */
-    const String & name() const;
+    const String & name() const;  // RMEM: name()，公有成员方法，获取 m_name
 
     /**
      * Set program name.
      *
      * @param name Program name string.
      */
-    void setName(const char *name);
+    void setName(const char *name);  // RMEM: setName()，公有成员方法，设置 m_name
 
     /**
      * Set program description.
      *
      * @param desc Program description string.
      */
-    void setDescription(const String & desciption);
+    void setDescription(const String & desciption);  // RMEM: setDescription()，公有成员方法，设置 m_Description
 
     /**
      * Register a flag Argument
@@ -103,7 +103,7 @@ class ArgumentParser
      */
     Result registerFlag(char arg,
                         const char *name,
-                        const char *description);
+                        const char *description);  // RMEM: registerFlag()，公有成员方法，注册参数选项、参数名、描述信息
 
     /**
      * Register a positional argument.
@@ -116,7 +116,7 @@ class ArgumentParser
      */
     Result registerPositional(const char *name,
                               const char *description,
-                              Size count = 1);
+                              Size count = 1);  // RMEM: registerPositional()，公有成员方法，注册参数名、描述信息
 
     /**
      * Parse input arguments.
@@ -132,24 +132,24 @@ class ArgumentParser
      */
     Result parse(int argc,
                  char **argv,
-                 ArgumentContainer & output);
+                 ArgumentContainer & output);  // RMEM: parse()，公有成员方法，解析命令行参数至 ArgumentContainer
 
   private:
 
     /** Contains all registered flag arguments by name. */
-    HashTable<String, Argument *> m_flags;
+    HashTable<String, Argument *> m_flags;  // RMEM: m_flags，私有成员变量
 
     /** Contains all registered flag arguments by single character identifier. */
-    HashTable<String, Argument *> m_flagsId;
+    HashTable<String, Argument *> m_flagsId;  // RMEM: m_flagsId，私有成员变量
 
     /** Contains all registered positional arguments. */
-    Vector<Argument *> m_positionals;
+    Vector<Argument *> m_positionals;  // RMEM: m_positionals，私有成员变量
 
     /** Program name */
-    String m_name;
+    String m_name;  // RMEM: m_name，私有成员变量
 
     /** Program description */
-    String m_description;
+    String m_description;  // RMEM: m_description，私有成员变量
 };
 
 /**

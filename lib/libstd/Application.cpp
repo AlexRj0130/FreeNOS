@@ -17,7 +17,7 @@
 
 #include "Application.h"
 
-Application::Application(int argc, char **argv)
+Application::Application(int argc, char **argv)  // RMEM: Application()，构造函数，记录参数
 {
     m_argc = argc;
     m_argv = argv;
@@ -35,7 +35,7 @@ Application::Result Application::initialize()
     return Success;
 }
 
-int Application::run()
+int Application::run()  // RMEM: run()，接口，按顺序运行各个私有成员函数、子类接口，从而完成整个执行过程
 {
     // Set application name
     if (m_argc < 1)

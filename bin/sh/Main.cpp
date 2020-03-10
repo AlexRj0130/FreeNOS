@@ -21,6 +21,6 @@
 int main(int argc, char **argv)
 {
     StdioLog log;
-    Shell app(argc, argv);
+    Shell app(argc, argv);  // NOTE: Shell 入口
     return app.run();
 }

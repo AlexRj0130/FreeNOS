@@ -18,36 +18,36 @@
 #include "Log.h"
 #include "String.h"
 
-Log::Log() : Singleton<Log>(this)
+Log::Log() : Singleton<Log>(this)  // RMEM: Log(), 构造函数
 {
     setMinimumLogLevel(Notice);
 }
 
-Log::~Log()
+Log::~Log()  // RMEM: ~Log(), 析构函数
 {
 }
 
-Log::Level Log::getMinimumLogLevel()
+Log::Level Log::getMinimumLogLevel()  // RMEM: getMinimumLogLevel()
 {
     return m_minimumLogLevel;
 }
 
-void Log::setMinimumLogLevel(Log::Level level)
+void Log::setMinimumLogLevel(Log::Level level)  // RMEM: setMinimumLogLevel()
 {
     m_minimumLogLevel = level;
 }
 
-const char * Log::getIdent() const
+const char * Log::getIdent() const  // RMEM: getIdent()
 {
     return (m_ident);
 }
 
-void Log::setIdent(const char *ident)
+void Log::setIdent(const char *ident)  // RMEM: setIdent()
 {
     m_ident = ident;
 }
 
-void Log::append(const char *str)
+void Log::append(const char *str)  // RMEM: append()
 {
     m_outputBuffer << str;
 
@@ -58,34 +58,34 @@ void Log::append(const char *str)
     }
 }
 
-Log & operator << (Log &log, const char *str)
+Log & operator << (Log &log, const char *str)  // RMEM: Log 重载运算符 << 
 {
     log.append(str);
     return log;
 }
 
-Log & operator << (Log &log, int number)
+Log & operator << (Log &log, int number)  // RMEM: Log 重载运算符 << 
 {
     String s = number;
     log.append(*s);
     return log;
 }
 
-Log & operator << (Log &log, unsigned number)
+Log & operator << (Log &log, unsigned number)  // RMEM: Log 重载运算符 << 
 {
     String s = number;
     log.append(*s);
     return log;
 }
 
-Log & operator << (Log &log, unsigned long number)
+Log & operator << (Log &log, unsigned long number)  // RMEM: Log 重载运算符 << 
 {
     String s = number;
     log.append(*s);
     return log;
 }
 
-Log & operator << (Log &log, void *ptr)
+Log & operator << (Log &log, void *ptr)  // RMEM: Log 重载运算符 <<
 {
     String s;
     s << Number::Hex << ptr;

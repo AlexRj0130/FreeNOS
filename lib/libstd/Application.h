@@ -35,7 +35,7 @@
 /**
  * Generic application
  */
-class Application
+class Application // RCLS: Application，所有程序的（纯虚）基类，接口为 run
 {
   private:
 
@@ -50,7 +50,7 @@ class Application
     /**
      * Result codes.
      */
-    enum Result
+    enum Result  // RMEM: Result，程序的执行结果，是个枚举值
     {
         Success,
         NotFound,
@@ -67,19 +67,19 @@ class Application
      * @param argc Argument count
      * @param argv Argument values
      */
-    Application(int argc, char **argv);
+    Application(int argc, char **argv);  // RMEM: Application()，构造函数，程序待执行的参数
 
     /**
      * Class destructor.
      */
-    virtual ~Application();
+    virtual ~Application(); // RMEM: ~Application()，析构函数
 
     /**
      * Run the application
      *
      * @return Exit code
      */
-    virtual int run();
+    virtual int run();  // RMEM: run()，接口，运行
 
   protected:
 
@@ -88,14 +88,14 @@ class Application
      *
      * @return Result code
      */
-    virtual Result initialize();
+    virtual Result initialize();  // RMEM: initialize()，子类接口，初始化
 
     /**
      * Execute the application event loop.
      *
      * @return Result code
      */
-    virtual Result exec() = 0;
+    virtual Result exec() = 0; // RMEM: exec()，子类接口，执行
 
     /**
      * Print text to output.
@@ -103,7 +103,7 @@ class Application
      * @param string Text to print to program output.
      * @return Result code.
      */
-    virtual Result output(const char *string) const = 0;
+    virtual Result output(const char *string) const = 0;  // RMEM: output()，子类接口，输出文本内容
 
     /**
      * Print string to output.
@@ -112,7 +112,7 @@ class Application
      *
      * @return Result code.
      */
-    virtual Result output(String & string) const;
+    virtual Result output(String & string) const;  // RMEM: output()，子类接口，输出文本内容
 
   protected:
 
@@ -121,50 +121,50 @@ class Application
      *
      * @return Program arguments parser.
      */
-    ArgumentParser & parser();
+    ArgumentParser & parser();  // RMEM: parser()，子类成员方法，获取参数解析器
 
     /**
      * Get constant program arguments parser.
      *
      * @return Program arguments parser.
      */
-    const ArgumentParser & parser() const;
+    const ArgumentParser & parser() const;  // RMEM: parser()，子类成员方法，获取参数解析（常量）
 
     /**
      * Get program arguments.
      */
-    const ArgumentContainer & arguments() const;
+    const ArgumentContainer & arguments() const;  // RMEM: arguments()，子类成员方法，获取参数容器
 
     /**
      * Set program version.
      *
      * @param version Program version string
      */
-    void setVersion(const String & version);
+    void setVersion(const String & version);  // RMEM: setVersion()，子类成员方法，设置程序的版本号
 
   private:
 
     /**
      * Print usage and terminate.
      */
-    void usage() const;
+    void usage() const;  // RMEM: usage()，私有成员方法，显示程序的使用方法
 
   private:
 
     /** Program argument parser object */
-    ArgumentParser m_parser;
+    ArgumentParser m_parser;  // RMEM: m_parser，私有成员变量，参数解析器
 
     /** Parsed Arguments */
-    ArgumentContainer m_arguments;
+    ArgumentContainer m_arguments;  // RMEM: m_arguments，私有成员变量，参数容器
 
     /** Input argument count */
-    int m_argc;
+    int m_argc;  // RMEM: m_argc，私有成员变量，参数计数
 
     /** Input argument values */
-    char ** m_argv;
+    char ** m_argv;  // RMEM: m_argv，私有成员变量，参数
 
     /** Program version */
-    String m_version;
+    String m_version;  // RMEM: m_version，私有成员变量，参数
 };
 
 /**

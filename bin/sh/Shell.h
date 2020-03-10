@@ -30,7 +30,7 @@
 /**
  * System command shell interpreter
  */
-class Shell : public POSIXApplication
+class Shell : public POSIXApplication  // RCLS: Shell : public POSIXApplication，命令行应用
 {
   public:
 
@@ -40,19 +40,19 @@ class Shell : public POSIXApplication
      * @param argc Argument count
      * @param argv Argument values
      */
-    Shell(int argc, char **argv);
+    Shell(int argc, char **argv);  // RMEM: Shell()，构造函数，添加 Shell 应用描述信息，注册 Shell 命令
 
     /**
      * Destructor
      */
-    virtual ~Shell();
+    virtual ~Shell();  // RMEM: ~Shell()，析构函数
 
     /**
      * Execute the application.
      *
      * @return Result code
      */
-    virtual Result exec();
+    virtual Result exec();  // RMEM: exec()，接口，根据 Shell 的构造参数，选择执行脚本文件或启动交互式 Shell
 
     /**
      * Get shell command.
@@ -60,21 +60,21 @@ class Shell : public POSIXApplication
      * @param name ShellCommand name.
      * @return ShellCommand object pointer.
      */
-    ShellCommand * getCommand(const char *name);
+    ShellCommand * getCommand(const char *name);  // RMEM:  getCommand(), 公有成员方法
 
     /**
      * Get all shell commands.
      *
      * @return HashTable with ShellCommands
      */
-    HashTable<String, ShellCommand *> & getCommands();
+    HashTable<String, ShellCommand *> & getCommands();  // RMEM:  getCommands()，公有成员方法
 
     /**
      * Register a new ShellCommand.
      *
      * @param command ShellCommand object pointer.
      */
-    void registerCommand(ShellCommand *command);
+    void registerCommand(ShellCommand *command);  // RMEM:  registerCommand(), 公有成员方法
 
   private:
 
@@ -83,7 +83,7 @@ class Shell : public POSIXApplication
      *
      * @return Result code
      */
-    Result runInteractive();
+    Result runInteractive();  // RMEM:  runInteractive(), 私有成员方法
 
     /**
      * Executes the given input.
@@ -91,18 +91,18 @@ class Shell : public POSIXApplication
      * @param cmdline Input to execute.
      * @return Exit status of the command.
      */
-    int executeInput(char *cmdline);
+    int executeInput(char *cmdline);  // RMEM:  executeInput(), 私有成员方法
 
     /**
      * Fetch a command text from standard input.
      * @return Pointer to a command text.
      */
-    char * getInput();
+    char * getInput();  // RMEM:  getInput(), 私有成员方法
 
     /**
      * Output a prompt.
      */
-    void prompt();
+    void prompt();  // RMEM:  prompt(), 私有成员方法
 
     /**
      * Parses an input string into separate pieces.
@@ -112,12 +112,12 @@ class Shell : public POSIXApplication
      * @param background True if process must run in the background.
      * @return Number of parsed arguments.
      */
-    Size parse(char *cmdline, char **argv, Size maxArgv, bool *background);
+    Size parse(char *cmdline, char **argv, Size maxArgv, bool *background);  // RMEM:  parse(), 私有成员方法
 
   private:
 
     /** All known ShellCommands. */
-    HashTable<String, ShellCommand *> m_commands;
+    HashTable<String, ShellCommand *> m_commands;  // RMEM:  m_commands, 私有成员变量
 };
 
 /**

@@ -29,7 +29,7 @@
 /**
  * Singleton design pattern; only one instance is allowed.
  */
-template <class T> class Singleton
+template <class T> class Singleton  // RCLS: Singleton，单例模板
 {
   public:
 
@@ -38,7 +38,7 @@ template <class T> class Singleton
      *
      * @param instance New instance of T.
      */
-    Singleton<T>(T *obj)
+    Singleton<T>(T *obj)  // RMEM: Singleton()，构造函数，注册实例
     {
         instance = obj;
     }
@@ -46,7 +46,7 @@ template <class T> class Singleton
   public:
 
     /** One and only instance. */
-    static T *instance;
+    static T *instance;  // RMEM: * instance，公有成员变量，记录实例
 };
 
 /* Initialize the static member obj. */

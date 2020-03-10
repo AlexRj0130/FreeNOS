@@ -31,7 +31,7 @@
 /**
  * POSIX-compatible application
  */
-class POSIXApplication : public Application
+class POSIXApplication : public Application  // RCLS: POSIXApplication : public Application，POSIX 协议应用
 {
   public:
 
@@ -41,12 +41,12 @@ class POSIXApplication : public Application
      * @param argc Argument count
      * @param argv Argument values
      */
-    POSIXApplication(int argc, char **argv);
+    POSIXApplication(int argc, char **argv);  // RMEM: POSIXApplication()，构造函数，构造基类，设置版本参数
 
     /**
      * Class destructor.
      */
-    virtual ~POSIXApplication();
+    virtual ~POSIXApplication();  // RMEM: ~POSIXApplication()，析构函数
 
   protected:
 
@@ -57,7 +57,7 @@ class POSIXApplication : public Application
      *
      * @return Result code.
      */
-    virtual Result output(const char *string) const;
+    virtual Result output(const char *string) const;  // RMEM:  output()，子类接口，输出到终端
 };
 
 /**

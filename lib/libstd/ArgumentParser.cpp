@@ -18,13 +18,13 @@
 #include "ArgumentParser.h"
 #include "ConstHashIterator.h"
 
-ArgumentParser::ArgumentParser()
+ArgumentParser::ArgumentParser()  // RMEM: ArgumentParser()，构造函数，设置私有成员变量的默认值
 {
     m_name = "PROGNAME";
     m_description = "program description";
 }
 
-ArgumentParser::~ArgumentParser()
+ArgumentParser::~ArgumentParser()  // RMEM: ~ArgumentParser()，析构函数，清理
 {
     // cleanup flags
     for (HashIterator<String, Argument *> it(m_flags);
@@ -39,7 +39,7 @@ ArgumentParser::~ArgumentParser()
         delete m_positionals[i];
 }
 
-String ArgumentParser::getUsage() const
+String ArgumentParser::getUsage() const  // RMEM: getUsage()
 {
     String usage;
 
@@ -82,24 +82,24 @@ String ArgumentParser::getUsage() const
     return usage;
 }
 
-const String & ArgumentParser::name() const
+const String & ArgumentParser::name() const  // RMEM: name()
 {
     return m_name;
 }
 
-void ArgumentParser::setName(const char *name)
+void ArgumentParser::setName(const char *name)  // RMEM: setName()
 {
     m_name = name;
 }
 
-void ArgumentParser::setDescription(const String & description)
+void ArgumentParser::setDescription(const String & description)  // RMEM: setDescription()
 {
     m_description = description;
 }
 
 ArgumentParser::Result ArgumentParser::registerFlag(char id,
                                                     const char *name,
-                                                    const char *description)
+                                                    const char *description)  // RMEM: registerFlag()
 {
     // Insert the flag by its full name
     Argument *arg = new Argument(name);
@@ -118,7 +118,7 @@ ArgumentParser::Result ArgumentParser::registerFlag(char id,
 
 ArgumentParser::Result ArgumentParser::registerPositional(const char *name,
                                                           const char *description,
-                                                          Size count)
+                                                          Size count)  // RMEM: registerPositional()
 {
     // Check that only the last positional can have count zero.
     if (m_positionals.count() &&
@@ -135,7 +135,7 @@ ArgumentParser::Result ArgumentParser::registerPositional(const char *name,
 
 ArgumentParser::Result ArgumentParser::parse(int argc,
                                              char **argv,
-                                             ArgumentContainer & output)
+                                             ArgumentContainer & output)  // RMEM: parse()
 {
     Size pos = 0;
     Size i = 0;
