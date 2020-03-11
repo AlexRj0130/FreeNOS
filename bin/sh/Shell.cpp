@@ -132,7 +132,7 @@ Shell::Result Shell::exec()  // RMEM: exec()
     return Success;
 }
 
-Shell::Result Shell::runInteractive()
+Shell::Result Shell::runInteractive() // RMEM: runInteractive() 
 {
     char *cmdStr;
 
@@ -158,7 +158,7 @@ Shell::Result Shell::runInteractive()
     return Success;
 }
 
-int Shell::executeInput(char *command)
+int Shell::executeInput(char *command)  // RMEM: executeInput()
 {
     char *argv[MAX_ARGV];
     char tmp[128];
@@ -226,9 +226,9 @@ int Shell::executeInput(char *command)
     return EXIT_FAILURE;
 }
 
-char * Shell::getInput()
+char * Shell::getInput()  // RMEM: getInput()
 {
-    static char line[1024];
+    static char line[1024];  // NOTE: 存储 input 内容的是个 static，每次调用时重复使用，所以就不存在内存泄漏了
     Size total = 0;
 
     // Read a line
@@ -267,7 +267,7 @@ char * Shell::getInput()
     return line;
 }
 
-void Shell::prompt()
+void Shell::prompt()  // RMEM: prompt()
 {
     char host[128], cwd[128];
     
@@ -282,22 +282,22 @@ void Shell::prompt()
            host, cwd);
 }
 
-HashTable<String, ShellCommand *> & Shell::getCommands()
+HashTable<String, ShellCommand *> & Shell::getCommands()  // RMEM: getCommands()
 {
     return m_commands;
 }
 
-ShellCommand * Shell::getCommand(const char *name)
+ShellCommand * Shell::getCommand(const char *name)  // RMEM: getCommand()
 {
     return m_commands.get(name) ? *m_commands.get(name) : ZERO;
 }
 
-void Shell::registerCommand(ShellCommand *command)
+void Shell::registerCommand(ShellCommand *command)  // RMEM: registerCommand()
 {
     m_commands.insert(command->getName(), command);
 }
 
-Size Shell::parse(char *cmdline, char **argv, Size maxArgv, bool *background)
+Size Shell::parse(char *cmdline, char **argv, Size maxArgv, bool *background)  // RMEM: parse()
 {
     Size argc;
 
@@ -314,7 +314,7 @@ Size Shell::parse(char *cmdline, char **argv, Size maxArgv, bool *background)
             break;
         }
 
-        argv[argc] = cmdline;
+        argv[argc] = cmdline;  // NOTE: 这里复用了 cmdline 所指向的存储空间
 
         while (*cmdline && *cmdline != ' ')
             cmdline++;

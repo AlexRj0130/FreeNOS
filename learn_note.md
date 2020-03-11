@@ -9,3 +9,7 @@
 
 ## Abstract
 
+## 目录结构
+
+- bin
+  - sh：shell命令

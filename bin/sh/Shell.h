@@ -60,21 +60,21 @@ class Shell : public POSIXApplication  // RCLS: Shell : public POSIXApplication�
      * @param name ShellCommand name.
      * @return ShellCommand object pointer.
      */
-    ShellCommand * getCommand(const char *name);  // RMEM:  getCommand(), 公有成员方法
+    ShellCommand * getCommand(const char *name);  // RMEM:  getCommand(), 公有成员方法，通过名字获取指定 ShellCommand
 
     /**
      * Get all shell commands.
      *
      * @return HashTable with ShellCommands
      */
-    HashTable<String, ShellCommand *> & getCommands();  // RMEM:  getCommands()，公有成员方法
+    HashTable<String, ShellCommand *> & getCommands();  // RMEM:  getCommands()，公有成员方法，返回 Shell 中已经注册的 m_commands(所有 ShellCommands)
 
     /**
      * Register a new ShellCommand.
      *
      * @param command ShellCommand object pointer.
      */
-    void registerCommand(ShellCommand *command);  // RMEM:  registerCommand(), 公有成员方法
+    void registerCommand(ShellCommand *command);  // RMEM:  registerCommand(), 公有成员方法，注册 ShellCommand 至 m_commands
 
   private:
 
@@ -83,7 +83,7 @@ class Shell : public POSIXApplication  // RCLS: Shell : public POSIXApplication�
      *
      * @return Result code
      */
-    Result runInteractive();  // RMEM:  runInteractive(), 私有成员方法
+    Result runInteractive();  // RMEM:  runInteractive(), 私有成员方法，以交互式方式运行 shell
 
     /**
      * Executes the given input.
@@ -91,18 +91,18 @@ class Shell : public POSIXApplication  // RCLS: Shell : public POSIXApplication�
      * @param cmdline Input to execute.
      * @return Exit status of the command.
      */
-    int executeInput(char *cmdline);  // RMEM:  executeInput(), 私有成员方法
+    int executeInput(char *cmdline);  // RMEM:  executeInput(), 私有成员方法，执行一行 shell 命令，该命令可能来自文件、/bin/目录、以及 shell 输入
 
     /**
      * Fetch a command text from standard input.
      * @return Pointer to a command text.
      */
-    char * getInput();  // RMEM:  getInput(), 私有成员方法
+    char * getInput();  // RMEM:  getInput(), 私有成员方法，从终端读取输入内容，并对交互过程（编辑、显式等）进行处理
 
     /**
      * Output a prompt.
      */
-    void prompt();  // RMEM:  prompt(), 私有成员方法
+    void prompt();  // RMEM:  prompt(), 私有成员方法，显示提示信息（主机名、工作目录等）
 
     /**
      * Parses an input string into separate pieces.
@@ -117,7 +117,7 @@ class Shell : public POSIXApplication  // RCLS: Shell : public POSIXApplication�
   private:
 
     /** All known ShellCommands. */
-    HashTable<String, ShellCommand *> m_commands;  // RMEM:  m_commands, 私有成员变量
+    HashTable<String, ShellCommand *> m_commands;  // RMEM:  m_commands, 私有成员变量，用来存储 ShellCommand 实例
 };
 
 /**
